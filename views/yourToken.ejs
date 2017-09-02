@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <section id="error" class="hidden">Sorry but something went wrong with the URL, please try again</section>
+
+    <section class="jumbotron text-center">
+      <div class="container">
+        <h1 class="jumbotron-heading"><%= code %></h1>
+        <p class="lead text-muted"><%= face2.title %></p>
+        <% if (face2.storeLink) { %>
+          <a href="<%= face2.storeLink %>"><%= face2.storeLink %></a>
+        <% } %>
+      </div>
+    </section>
+    
+    <script src="/scripts/yourToken.js"></script>
+  </body>
+</html>

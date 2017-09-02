@@ -24,13 +24,30 @@ router.post('/campaigns', (req, res, next) => {
   .catch(() => res.render('index'));
 });
 
+router.get('/adgenerator', (req, res, next) => {
+  const campaign = {
+    name: 'redemption-limit',
+    type: 'AUTO_UPDATE',
+    description: null,
+    start_date: null,
+    expiration_date: null,
+    metadata: null,
+    vouchers_generation_status: 'DONE',
+    voucher:
+    {
+      type: 'DISCOUNT_VOUCHER',
+      is_referral_code: false
+    },
+    object: 'campaign'
+  }
+
+  res.render('adgenerator')
+
+});
+
 router.get('/campaigns/:id', (req, res, next) => {
   res.render('landingPageLayout', {title: req.params.id});
 });
 
-// router.post('/landingPageLayout/:id/updateUser', (req, res, next) => {
-
-//   console.log(req.body);
-// });
 
 module.exports = router;
