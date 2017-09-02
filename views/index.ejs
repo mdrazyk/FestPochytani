@@ -1,25 +1,69 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
-    integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+
+<head>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
     crossorigin="anonymous">
-  </head>
-  <body>
-    <div class="jumbotron">
-       <h1 class="display-3" style="text-align: center">Twarz 2!</h1>
+</head>
+<script>
+    localStorage.setItem("applicationId", applicationId);
+    localStorage.setItem("clientSecretKey", clientSecretKey);
+</script>
+
+<body class="container">
+  <div class="jumbotron">
+    <h1 class="display-3 text-primary text-center" style="font-size: 200px; font-variant: all-petite-caps">Face2</h1>
+    <p class="lead text-center">Welcome new Padawan!</p>
+  </div>
+  <div id="login">
+    <form action="/campaigns" method="post">
+      <div class="form-group ">
+        <label for="applicationId">Voucherify Application ID</label>
+        <input type="text" name="applicationId" class="form-control" id="applicationId">
       </div>
-      <form action="/campaigns" method="post">
-          <div class="form-group">
-            <label for="applicationId">Voucherify Application ID</label>
-            <input type="text" name="applicationId" class="form-control" id="applicationId">
-          </div>
-          <div class="form-group">
-              <label for="secretKey">Voucherify Secret Key</label>
-              <input type="text" name="secretKey" class="form-control" id="secretKey">
-          </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-  </body>
+      <div class="form-group">
+        <label for="secretKey">Voucherify Secret Key</label>
+        <input type="text" name="secretKey" class="form-control" id="secretKey">
+      </div>
+      <button type="submit" id="submit" class="btn btn-primary" style="width: 100%">Submit</button>
+    </form>
+  </div>
+  <div id="welcome">
+    <div class="alert alert-success text-center" style="padding-top: 50px; padding-bottom: 50px" role="alert">
+      <h1 class="alert-heading text-center">Welcome Again!</h1>
+      <h3>Awesome! You are already logged in!</h3>
+      <hr>
+      <p class="mb-0 text-center">In a second You will be redirect to campaigns list</p>
+    </div>
+  </div>
+</body>
+<script>
+  var login = document.getElementById("login");
+  var welcome = document.getElementById("welcome");
+
+  if (localStorage.getItem("applicationId") && localStorage.getItem("clientSecretKey")) {
+    login.style.display = "none";
+    welcome.style.display = "block";
+
+    login.value = localStorage.getItem("applicationId");
+    welcome.value = localStorage.getItem("clientSecretKey");
+
+    setTimeout(() => {
+      var event = new MouseEvent('click', {
+        'view': window,
+        'bubbles': true,
+        'cancelable': true
+      });
+      var cb = document.getElementById('submit');
+      var cancelled = !cb.dispatchEvent(event);
+
+    }, 5000);
+
+  } else {
+    login.style.display = "block";
+    welcome.style.display = "none";
+  }
+</script>
+
 </html>

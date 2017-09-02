@@ -24,13 +24,6 @@ const createAdLink = () => {
   return `${location.origin}/yourToken?app_id=${applicationId}&app_secret=${clientSecretKey}&campaign_name=${campaignName}`;
 }
 
-const createAdLink = () => {
-  const campaignName = localStorage.getItem('campaignName');
-  const clientSecretKey = localStorage.getItem('clientSecretKey');
-  const applicationId = localStorage.getItem('applicationId');
-
-  return `${location.origin}/yourToken?app_id=${applicationId}&app_secret=${clientSecretKey}&campaign_name=${campaignName}`;
-
 const createAd = () => {
   const name = window.localStorage.getItem('campaignName')
   const accessToken = window.localStorage.getItem('fbAccessToken')
