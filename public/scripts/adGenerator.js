@@ -34,7 +34,10 @@ const createAd = () => {
       const campaignId = res.id
       console.log(createAdLink())
       const adSetRequest = new Request(`https://graph.facebook.com/v2.10/act_${applicationId}/adsets?access_token=${accessToken}&name=${name}-1&ptimization_goal=REACH&billing_event=IMPRESSIONS&bid_amount=2&daily_budget=2000&campaign_id=${campaignId}&start_time=2017-09-22T16:59:37&end_time=2017-10-29T16:59:37&status=PAUSED&targeting=%7B%22geo_locations%22%3A%7B%22countries%22%3A%5B%22PL%22%5D%7D%7D&fields=id`, {method: 'POST'});
-      fetch(adSetRequest).then(res => res.json()).then((res)=>{ console.log(res) })
+      fetch(adSetRequest).then(res => res.json()).then((res)=>{ console.log(res)
+              const adRequest = new Request(`https://graph.facebook.com/v2.10/act_${applicationId}/adsets?access_token=${accessToken}&name=${name}-1&ptimization_goal=REACH&billing_event=IMPRESSIONS&bid_amount=2&daily_budget=2000&campaign_id=${campaignId}&start_time=2017-09-22T16:59:37&end_time=2017-10-29T16:59:37&status=PAUSED&targeting=%7B%22geo_locations%22%3A%7B%22countries%22%3A%5B%22PL%22%5D%7D%7D&fields=id`, {method: 'POST'});
+
+    })
                                                     
     })
 
