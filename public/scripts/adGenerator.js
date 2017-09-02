@@ -18,13 +18,11 @@ const setFbApplicationId = () =>{
 const createAd = () => {
   const name = window.localStorage.getItem('campaignName')
   const accessToken = window.localStorage.getItem('fbAccessToken')
-  getCampaign(name).then(()=>{
       const myRequest = new Request(`https://graph.facebook.com/v2.10/act_103829063043787/campaigns?access_token=${accessToken}&name=${name}&objective=LINK_CLICKS&status=PAUSED`, {method: 'POST'});
     fetch(myRequest).then(res => res.json()).then((res)=>{
       console.log(res)
       const adSetRequest = new Request(`https://graph.facebook.com/v2.10/act_103829063043787/campaigns?access_token=${accessToken}&name=${name}&ptimization_goal=REACH&billing_event=IMPRESSIONS&bid_amount=2daily_budget=1campaign_id={}`, {method: 'POST'});
       })
-  })
 }
 
 function getParameterByName(name, url) {
