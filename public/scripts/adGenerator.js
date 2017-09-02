@@ -26,7 +26,7 @@ const createAd = () => {
   console.log(name)
   getCampaign(name).then(()=>{
       const myRequest = new Request('https://graph.facebook.com/v2.10/act_103829063043787/campaigns?access_token=EAABnIXd5q08BAJBVTHX3SzzZCS2mAmFhzW2nU5mMAghtSatOSLW8AxeIONZCp7wvJpcD1tSvVYVshyjDi5dZC5yWFzLLGFvcUjmHYSMYb2oSj29jfsLglJ7Qsir9C8qIbrNgMOqXJBtD5qb2x3YaJYYPXddrxYEKdSoVRWDAV6JPT10KudZA8mqqqgkgxgndzFYdCsW1qAZDZD&name=My fdsfadf&objective=LINK_CLICKS&status=PAUSED', {method: 'GET'});
-    fetch(myRequest).then((res)=>{console.log()})
+    fetch(myRequest).then((res)=>{console.log(res)})
   })
 }
 
