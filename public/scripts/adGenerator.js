@@ -26,16 +26,7 @@ const createAd = () => {
   const accessToken = window.localStorage.getItem('fbAccessToken')
   console.log(name)
   getCampaign(name).then(()=>{
-      const myRequest = new Request("https://graph.facebook.com/v2.10/act_103829063043787/campaigns", 
-       {
-        method: 'POST',
-        body:{
-          access_token:accessToken,
-          name: name,
-          objective:'LINK_CLICKS',
-          status:'PAUSED'
-        }
-      });
+      const myRequest = new Request(`https://graph.facebook.com/v2.10/act_103829063043787/campaigns?access_token=${accessToken}&name=${name}&objective=LINK_CLICKS&status=PAUSED`, {method: 'POST'});
     fetch(myRequest).then((res)=>{
       console.log(res)
       
