@@ -7,23 +7,28 @@
     crossorigin="anonymous">
   </head>
   <body>
-    <div class="jumbotron">
-         <h1 class="display-3" style="text-align: center"><%= title %></h1>
-      </div>
-        <div class="form-group">
-        <label>
-                <input id="checkBox" type="checkbox"/>
-                Enable customer tracking
-        </label>
-        </br>
+    <div class="container">
+       <h1 class="display-3" style="text-align: center">landing page for `<%= title %>`</h1>
+    </div>
+    <hr/>
+    <br/>
+    <section class="container">
+      <div class="form-group">
         <label for="applicationId">Title</label>
-        <input type="text" name="title" class="form-control" id="title">
-        </div>
-        <div class="form-group">
-            <label for="secretKey">Store Link</label>
-            <input type="text" name="storeLink" class="form-control" id="storeLink">
-        </div>
-        <button id="button" type="submit" class="btn btn-primary">Submit</button>
+        <input type="text" name="title" class="form-control" id="title" placeholder="main text of your landing page">
+      </div>
+      <div class="form-group">
+        <label for="secretKey">Store Link</label>
+        <input type="text" name="storeLink" class="form-control" id="storeLink" placeholder="link to the store user can use a coupon">
+      </div>
+      <div class="form-group">
+        <label>
+          <input id="checkBox" type="checkbox" checked="checked"/>
+          Enable customer tracking
+        </label>
+      </div>
+      <button id="button" type="submit" class="btn btn-primary">Submit</button>
+    </container>
   </body>
   <script>
       var button = document.getElementById('button');
