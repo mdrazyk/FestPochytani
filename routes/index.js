@@ -15,7 +15,9 @@ router.post('/campaigns', (req, res, next) => {
 
   client.campaigns.list()
   .then(data => data.campaigns)
-  .then(data => res.render('campaigns', {campaigns: data}))
+  .then(data => {
+    res.render('campaigns', {campaigns: data});
+  })
   .catch(() => res.render('index'));
 });
 
