@@ -6,17 +6,18 @@ documentReady.then(() => {
     accessToken && window.localStorage.setItem('fbAccessToken', accessToken)
     window.document.getElementById('fbLogin').innerHTML = "You are already logged in to facebook"
     window.document.getElementById('fbLogin').setAttribute('disabled', true)
+    setFbApplicationId()
   }
   else
   {
     window.document.getElementById('fbLogin').innerHTML = "You are already logged in to facebook"
     window.document.getElementById('fbLogin').setAttribute('disabled', true)
+    setFbApplicationId()
   }
 })
 
 const setFbApplicationId = () => {
-  var applicationId = window.document.getElementById('applicationId').value
-  window.localStorage.setItem('marketingApplicationId', applicationId)
+  window.localStorage.setItem('marketingApplicationId', '103829063043787')
 }
 
 const createAdLink = () => {
