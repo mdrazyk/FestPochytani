@@ -1,7 +1,7 @@
 const documentReady = new Promise(resolve => document.addEventListener('DOMContentLoaded', resolve))
 
 documentReady.then(() => {
-  if(window.localStorage.getItem('fbAccessToken')){
+  if(!window.localStorage.getItem('fbAccessToken')){
     var accessToken = window.location.hash.split('&')[0].split('=')[1] //todo: check timestapm and expiration date
     accessToken && window.localStorage.setItem('fbAccessToken', accessToken)
   }
@@ -22,14 +22,14 @@ const getCampaign = name => Promise.resolve({
 })
 
 const createAd = () => {
-  const name = window.localStorage.getItem('campaignName')
+  //const name = window.localStorage.getItem('campaignName')
   const accessToken = window.localStorage.getItem('fbAccessToken')
-  console.log(name)
+  const name = "Great"
   getCampaign(name).then(()=>{
       const myRequest = new Request(`https://graph.facebook.com/v2.10/act_103829063043787/campaigns?access_token=${accessToken}&name=${name}&objective=LINK_CLICKS&status=PAUSED`, {method: 'POST'});
-    fetch(myRequest).then((res)=>{
+    fetch(myRequest).then(res => res.json()).then((res)=>{
       console.log(res)
-      
+      const adSetRequest = new Request(`https://graph.facebook.com/v2.10/act_103829063043787/campaigns?access_token=${accessToken}&name=${name}&ptimization_goal=REACH&billing_event=IMPRESSIONS&bid_amount=2daily_budget=1campaign_id={}`, {method: 'POST'});
       })
   })
 }
