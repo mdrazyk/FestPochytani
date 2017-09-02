@@ -8,8 +8,6 @@ documentReady.then(() => {
   else{
     window.document.getElementById('fbLogin').style.display='none'
   }
-  const campaignName = getParameterByName('campaignName')
-  campaignName && window.localStorage.setItem('campaignName', campaignName)
 })
 
 const setFbApplicationId = () =>{
@@ -17,14 +15,9 @@ const setFbApplicationId = () =>{
   window.localStorage.setItem('applicationId', applicationId)
 }
 
-const getCampaign = name => Promise.resolve({
-  
-})
-
 const createAd = () => {
-  //const name = window.localStorage.getItem('campaignName')
+  const name = window.localStorage.getItem('campaignName')
   const accessToken = window.localStorage.getItem('fbAccessToken')
-  const name = "Great"
   getCampaign(name).then(()=>{
       const myRequest = new Request(`https://graph.facebook.com/v2.10/act_103829063043787/campaigns?access_token=${accessToken}&name=${name}&objective=LINK_CLICKS&status=PAUSED`, {method: 'POST'});
     fetch(myRequest).then(res => res.json()).then((res)=>{
