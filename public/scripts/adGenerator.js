@@ -1,7 +1,7 @@
 const documentReady = new Promise(resolve => document.addEventListener('DOMContentLoaded', resolve))
 
 documentReady.then(() => {
-  if(window.localStorage.getItem('fbAccessToken')===null){
+  if(window.localStorage.getItem('fbAccessToken')){
     var accessToken = window.location.hash.split('&')[0].split('=')[1] //todo: check timestapm and expiration date
     accessToken && window.localStorage.setItem('fbAccessToken', accessToken)
   }
@@ -23,14 +23,25 @@ const getCampaign = name => Promise.resolve({
 
 const createAd = () => {
   const name = window.localStorage.getItem('campaignName')
+  const accessToken = window.localStorage.getItem('fbAccessToken')
   console.log(name)
   getCampaign(name).then(()=>{
-      const myRequest = new Request('https://graph.facebook.com/v2.10/act_103829063043787/campaigns?access_token=EAABnIXd5q08BAJBVTHX3SzzZCS2mAmFhzW2nU5mMAghtSatOSLW8AxeIONZCp7wvJpcD1tSvVYVshyjDi5dZC5yWFzLLGFvcUjmHYSMYb2oSj29jfsLglJ7Qsir9C8qIbrNgMOqXJBtD5qb2x3YaJYYPXddrxYEKdSoVRWDAV6JPT10KudZA8mqqqgkgxgndzFYdCsW1qAZDZD&name=My fdsfadf&objective=LINK_CLICKS&status=PAUSED', {method: 'GET'});
-    fetch(myRequest).then((res)=>{console.log(res)})
+      const myRequest = new Request("https://graph.facebook.com/v2.10/act_103829063043787/campaigns", 
+       {
+        method: 'POST',
+        body:{
+          access_token:accessToken,
+          name: name,
+          objective:'LINK_CLICKS',
+          status:'PAUSED'
+        }
+      });
+    fetch(myRequest).then((res)=>{
+      console.log(res)
+      
+      })
   })
 }
-
-
 
 function getParameterByName(name, url) {
     if (!url) url = window.location.href;

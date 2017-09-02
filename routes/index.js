@@ -8,15 +8,18 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/campaigns', (req, res, next) => {
+  const applicationId = req.body.applicationId;
+  const clientSecretKey = req.body.secretKey;
+  
   const client = voucherifyClient({
-    applicationId: req.body.applicationId,
-    clientSecretKey: req.body.secretKey
+    applicationId: applicationId,
+    clientSecretKey: clientSecretKey
   });
 
   client.campaigns.list()
   .then(data => data.campaigns)
   .then(data => {
-    res.render('campaigns', {campaigns: data});
+    res.render('campaigns', {campaigns: data, keys: [applicationId, clientSecretKey]});
   })
   .catch(() => res.render('index'));
 });
@@ -40,6 +43,11 @@ router.get('/adgenerator', (req, res, next) => {
 
   res.render('adgenerator')
 
-})
+});
+
+router.get('/campaigns/:id', (req, res, next) => {
+  res.render('landingPageLayout', {title: req.params.id});
+});
+
 
 module.exports = router;

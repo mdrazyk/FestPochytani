@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+    integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+    crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="jumbotron">
+         <h1 class="display-3" style="text-align: center"><%= title %></h1>
+      </div>
+        <div class="form-group">
+        <label>
+                <input id="checkBox" type="checkbox"/>
+                Enable customer tracking
+        </label>
+        </br>
+        <label for="applicationId">Title</label>
+        <input type="text" name="title" class="form-control" id="title">
+        </div>
+        <div class="form-group">
+            <label for="secretKey">Store Link</label>
+            <input type="text" name="storeLink" class="form-control" id="storeLink">
+        </div>
+        <button id="button" type="submit" class="btn btn-primary">Submit</button>
+  </body>
+  <script>
+      var button = document.getElementById('button');
+      button.onclick = function() {
+          var title = document.getElementById('title').value;
+          var storeLink = document.getElementById('storeLink').value;
+          var track = document.getElementById('checkBox').checked;
+          
+          fetch('https://api.voucherify.io/v1/campaigns/<%=title%>', {
+              method: 'PUT',
+              headers: {
+                "X-App-Id": localStorage.getItem('applicationId'),
+                "X-App-Token": localStorage.getItem('clientSecretKey'),
+                "Content-Type": "application/json" 
+              },
+              body: JSON.stringify({
+                "metadata" : {face2: {
+                    title: title,
+                    storeLink: storeLink,
+                    track: track
+                }}
+              })
+          }).then(response => response.json()).then(data => {
+                localStorage.setItem('campaignName', '<%=title%>');
+                location.href = "/adgenerator"
+            });
+      };
+  </script>
+</html>
