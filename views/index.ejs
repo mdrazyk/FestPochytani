@@ -6,15 +6,11 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
     crossorigin="anonymous">
 </head>
-<script>
-    localStorage.setItem("applicationId", applicationId);
-    localStorage.setItem("clientSecretKey", clientSecretKey);
-</script>
 
 <body class="container">
   <div class="jumbotron">
     <h1 class="display-3 text-primary text-center" style="font-size: 200px; font-variant: all-petite-caps">Face2</h1>
-    <p class="lead text-center">Welcome new Padawan!</p>
+    <p class="lead text-center">explore possibilities of Voucherify!</p>
   </div>
   <div id="login">
     <form action="/campaigns" method="post">
@@ -32,9 +28,9 @@
   <div id="welcome">
     <div class="alert alert-success text-center" style="padding-top: 50px; padding-bottom: 50px" role="alert">
       <h1 class="alert-heading text-center">Welcome Again!</h1>
-      <h3>Awesome! You are already logged in!</h3>
+      <h3>You are already logged in!</h3>
       <hr>
-      <p class="mb-0 text-center">In a second You will be redirect to campaigns list</p>
+      <p class="mb-0 text-center">In a second You will be redirect to campaings list</p>
     </div>
   </div>
 </body>
@@ -42,12 +38,15 @@
   var login = document.getElementById("login");
   var welcome = document.getElementById("welcome");
 
+  var text = document.getElementById("applicationId");
+  var secretKey = document.getElementById("secretKey");
+
   if (localStorage.getItem("applicationId") && localStorage.getItem("clientSecretKey")) {
     login.style.display = "none";
     welcome.style.display = "block";
 
-    login.value = localStorage.getItem("applicationId");
-    welcome.value = localStorage.getItem("clientSecretKey");
+    text.value = localStorage.getItem("applicationId");
+    secretKey.value = localStorage.getItem("clientSecretKey");
 
     setTimeout(() => {
       var event = new MouseEvent('click', {
