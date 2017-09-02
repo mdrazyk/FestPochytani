@@ -39,8 +39,10 @@ router.get('/getCode', (req, res, next) => {
       clientSecretKey: app_secret
   })
 
-  voucherifyClient.distributions.publish(campaign_name, {
+  voucherifyClient.distributions.publish({
+    campaign: campaign_name,
     customer: {
+      email: email,
       source_id: email
     }
   }).then(publishedVoucher => res.status(200).json({

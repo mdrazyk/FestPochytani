@@ -11,9 +11,10 @@
     <section class="jumbotron text-center">
       <div class="container">
         <p class="lead text-muted" id="oneStep">You are one step away from getting your voucher code!</p>
-        <div id="getCodeContainer">
-          <input type="email" id="email" /><br/>
-          <button id="getCode">Get your code</button>
+        <p class="lead text-muted" id="justEmail">Just put your email here and we are good to go!</p>
+        <div id="getCodeContainer" class="form-group">
+          <input type="email" id="email" class="form-control" placeholder="your email"/><br/>
+          <button id="getCode" class="btn btn-primary">Get your code</button>
         </div>
         <h1 id="code" class="jumbotron-heading"></h1>
         <p class="lead text-muted" id="campaignLead"></p>
@@ -33,8 +34,7 @@
           fetch(`/yourToken/getCode${window.location.search}&email=${email}`)
             .then(r => r.json())
             .then(({code, face2}) => {
-              document.getElementById('oneStep').remove()
-              document.getElementById('getCodeContainer').remove()
+              ['oneStep', 'getCodeContainer', 'justEmail'].forEach(n => document.getElementById(n).remove())
               document.getElementById('code').innerHTML = code
               document.getElementById('campaignLead').innerHTML = face2.title
               document.getElementById('link').innerHTML = face2.storeLink
