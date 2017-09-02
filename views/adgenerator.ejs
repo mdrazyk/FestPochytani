@@ -6,16 +6,21 @@
     integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
     crossorigin="anonymous">
   </head>
-  <body>
-    <a href="https://www.facebook.com/v2.10/dialog/oauth?%20client_id=113393436044111&redirect_uri=https%3A%2F%2Fsage-nail.glitch.me%2Fadgenerator&response_type=token&granted_scopes=ads_management" id="fbLogin">Login to Facebook</a>
-      <form action="javascript:setFbApplicationId()">
-          <div class="form-group">
-            <label for="applicationId"></label>
-            <input type="text" name="applicationId" class="form-control" id="applicationId">
-          </div>
-          <button type="submit" class="btn btn-primary" >Submit</button>
-        </form>
-    <button onClick="createAd()"> CREATE CAMPAIGN</button>
-        <script src="/scripts/adGenerator.js" ></script>
+  <body class="container">
+    <section class="container">
+      <a href="https://www.facebook.com/v2.10/dialog/oauth?%20client_id=113393436044111&redirect_uri=https%3A%2F%2Fsage-nail.glitch.me%2Fadgenerator&response_type=token&granted_scopes=ads_management" id="fbLogin">Login to Facebook</a>
+    </section>
+    <!-- <form> -->
+      <!-- <div class="form-group"> -->
+        <!-- <label for="applicationId"></label> -->
+        <!-- <input type="text" name="applicationId" class="form-control" id="applicationId"> -->
+      <!-- </div> -->
+      <!-- <button type="submit" class="btn btn-primary" >Submit</button> -->
+    <!-- </form> -->
+    <section class="container"><br/><br/><p>an amazing facebook ad generator which is currently hardcoded :)</p><br/><br/></section>
+    <section class="container">
+      <button onClick="createAd()" class="btn btn-primary"> CREATE CAMPAIGN</button>
+    </section>
+    <script src="/scripts/adGenerator.js"></script>
   </body>
 </html>
