@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
 
   const publishVoucherPromise = voucherifyClient.distributions.publish(campaign_name)
 
-  publishVoucherPromise.then(publishedVoucher => console.log(JSON.stringify(publishedVoucher, null, 2)) || res.render('yourToken', {
+  publishVoucherPromise.then(publishedVoucher => res.render('yourToken', {
     title: `Your ${campaign_name} token`,
     code: publishedVoucher.voucher.code,
     face2: publishedVoucher.voucher.metadata.face2
