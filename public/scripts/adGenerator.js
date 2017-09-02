@@ -17,10 +17,13 @@ const setFbApplicationId = () =>{
   window.localStorage.setItem('applicationId', applicationId)
 }
 
-const getCampaign = name => Promise.resolve({
-  
-})
+const createAdLink = () => {
+  const campaignName = localStorage.getItem('campaignName');
+  const clientSecretKey = localStorage.getItem('clientSecretKey');
+  const applicationId = localStorage.getItem('applicationId');
 
+  return `${location.origin}/yourToken?app_id=${applicationId}&app_secret=${clientSecretKey}&campaign_name=${campaignName}`;
+}
 const createAd = () => {
   const name = window.localStorage.getItem('campaignName')
   console.log(name)
@@ -29,8 +32,6 @@ const createAd = () => {
     fetch(myRequest).then((res)=>{console.log(res)})
   })
 }
-
-
 
 function getParameterByName(name, url) {
     if (!url) url = window.location.href;
