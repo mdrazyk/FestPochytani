@@ -4,7 +4,11 @@ documentReady.then(() => {
   if(!window.localStorage.getItem('fbAccessToken')){
     var accessToken = window.location.hash.split('&')[0].split('=')[1] //todo: check timesta mpand expiration date
     accessToken && window.localStorage.setItem('fbAccessToken', accessToken)
+<<<<<<< HEAD
     accessToken && (() => { window.document.getElementById('fbLogin').innerHTML = "You are already logged in to facebook" })()
+=======
+    accessToken && window.document.getElementById('fbLogin').innerHTML = "You are already logged in to facebook"
+>>>>>>> 5af85972b832e1afa6704e4b4aada0c3bdb7edf6
     accessToken && setFbApplicationId()
   }
   else
