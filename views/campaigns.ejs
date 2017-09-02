@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+    integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+    crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="jumbotron">
+         <h1 class="display-3" style="text-align: center">Twarz 2!</h1>
+      </div>
+      <ul class="list-group" style="width: 400px">
+          <% for (var key in campaigns) { %>
+            <li class="list-group-item"><%= campaigns[key].name %></li>
+          <% } %>
+      </ul>
+  </body>
+</html>
