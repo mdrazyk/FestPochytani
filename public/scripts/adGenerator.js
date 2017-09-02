@@ -6,13 +6,22 @@ documentReady.then(() => {
     accessToken && window.localStorage.setItem('fbAccessToken', accessToken)
   }
   else{
-    window.document.getElementById('fbLogin').style.display='none'
+    window.document.getElementById('fbLogin').innerHTML = "You are already logged in"
+    
   }
 })
 
 const setFbApplicationId = () =>{
   var applicationId = window.document.getElementById('applicationId').value
-  window.localStorage.setItem('applicationId', applicationId)
+  window.localStorage.setItem('marketingApplicationId', applicationId)
+}
+
+const createAdLink = () => {
+  const campaignName = localStorage.getItem('campaignName');
+  const clientSecretKey = localStorage.getItem('clientSecretKey');
+  const applicationId = localStorage.getItem('applicationId');
+
+  return `${location.origin}/yourToken?app_id=${applicationId}&app_secret=${clientSecretKey}&campaign_name=${campaignName}`;
 }
 
 const createAdLink = () => {
@@ -25,11 +34,14 @@ const createAdLink = () => {
 const createAd = () => {
   const name = window.localStorage.getItem('campaignName')
   const accessToken = window.localStorage.getItem('fbAccessToken')
-      const myRequest = new Request(`https://graph.facebook.com/v2.10/act_103829063043787/campaigns?access_token=${accessToken}&name=${name}&objective=LINK_CLICKS&status=PAUSED`, {method: 'POST'});
+  const applicationId =  window.localStorage.getItem('marketingApplicationId')
+      const myRequest = new Request(`https://graph.facebook.com/v2.10/act_${applicationId}/campaigns?access_token=${accessToken}&name=${name}&objective=LINK_CLICKS&status=PAUSED`, {method: 'POST'});
     fetch(myRequest).then(res => res.json()).then((res)=>{
       console.log(res)
+      console.log(createAdLink())
       const adSetRequest = new Request(`https://graph.facebook.com/v2.10/act_103829063043787/campaigns?access_token=${accessToken}&name=${name}&ptimization_goal=REACH&billing_event=IMPRESSIONS&bid_amount=2daily_budget=1campaign_id={}`, {method: 'POST'});
       })
+
 }
 
 function getParameterByName(name, url) {
