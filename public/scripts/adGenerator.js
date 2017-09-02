@@ -2,16 +2,19 @@ const documentReady = new Promise(resolve => document.addEventListener('DOMConte
 
 documentReady.then(() => {
   if(!window.localStorage.getItem('fbAccessToken')){
-    var accessToken = window.location.hash.split('&')[0].split('=')[1] //todo: check timestapm and expiration date
+    var accessToken = window.location.hash.split('&')[0].split('=')[1] //todo: check timesta mpand expiration date
     accessToken && window.localStorage.setItem('fbAccessToken', accessToken)
+    window.document.getElementById('fbLogin').innerHTML = "You are already logged in to facebook"
+    window.document.getElementById('fbLogin').setAttribute('disabled', true)
   }
-  else{
-    window.document.getElementById('fbLogin').innerHTML = "You are already logged in"
-    
+  else
+  {
+    window.document.getElementById('fbLogin').innerHTML = "You are already logged in to facebook"
+    window.document.getElementById('fbLogin').setAttribute('disabled', true)
   }
 })
 
-const setFbApplicationId = () =>{
+const setFbApplicationId = () => {
   var applicationId = window.document.getElementById('applicationId').value
   window.localStorage.setItem('marketingApplicationId', applicationId)
 }
