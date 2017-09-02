@@ -9,3 +9,7 @@ documentReady.then(() => {
     window.document.getElementById('fbLogin').style.display='none'
   }
 })
+const setFbApplicationId = function(e){
+  var applicationId = window.document.getElementById('applicationId').value
+  window.localStorage.setItem('fbApplicationId', applicationId)
+}
