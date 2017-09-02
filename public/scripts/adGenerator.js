@@ -1,15 +1,13 @@
 const documentReady = new Promise(resolve => document.addEventListener('DOMContentLoaded', resolve))
 
 documentReady.then(() => {
-  if(window.localStorage.getItem('fbAccessToken')===null){
+  if(!window.localStorage.getItem('fbAccessToken')){
     var accessToken = window.location.hash.split('&')[0].split('=')[1] //todo: check timestapm and expiration date
     accessToken && window.localStorage.setItem('fbAccessToken', accessToken)
   }
   else{
     window.document.getElementById('fbLogin').style.display='none'
   }
-  const campaignName = getParameterByName('campaignName')
-  campaignName && window.localStorage.setItem('campaignName', campaignName)
 })
 
 const setFbApplicationId = () =>{
@@ -23,14 +21,15 @@ const createAdLink = () => {
   const applicationId = localStorage.getItem('applicationId');
 
   return `${location.origin}/yourToken?app_id=${applicationId}&app_secret=${clientSecretKey}&campaign_name=${campaignName}`;
-}
+
 const createAd = () => {
   const name = window.localStorage.getItem('campaignName')
-  console.log(name)
-  getCampaign(name).then(()=>{
-      const myRequest = new Request('https://graph.facebook.com/v2.10/act_103829063043787/campaigns?access_token=EAABnIXd5q08BAJBVTHX3SzzZCS2mAmFhzW2nU5mMAghtSatOSLW8AxeIONZCp7wvJpcD1tSvVYVshyjDi5dZC5yWFzLLGFvcUjmHYSMYb2oSj29jfsLglJ7Qsir9C8qIbrNgMOqXJBtD5qb2x3YaJYYPXddrxYEKdSoVRWDAV6JPT10KudZA8mqqqgkgxgndzFYdCsW1qAZDZD&name=My fdsfadf&objective=LINK_CLICKS&status=PAUSED', {method: 'GET'});
-    fetch(myRequest).then((res)=>{console.log(res)})
-  })
+  const accessToken = window.localStorage.getItem('fbAccessToken')
+      const myRequest = new Request(`https://graph.facebook.com/v2.10/act_103829063043787/campaigns?access_token=${accessToken}&name=${name}&objective=LINK_CLICKS&status=PAUSED`, {method: 'POST'});
+    fetch(myRequest).then(res => res.json()).then((res)=>{
+      console.log(res)
+      const adSetRequest = new Request(`https://graph.facebook.com/v2.10/act_103829063043787/campaigns?access_token=${accessToken}&name=${name}&ptimization_goal=REACH&billing_event=IMPRESSIONS&bid_amount=2daily_budget=1campaign_id={}`, {method: 'POST'});
+      })
 }
 
 function getParameterByName(name, url) {
