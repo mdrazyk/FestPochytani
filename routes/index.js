@@ -14,9 +14,11 @@ router.post('/campaigns', (req, res, next) => {
   });
 
   client.campaigns.list()
-    .then(data => data.campaigns)
-    .then(data => res.render('campaigns', { campaigns: data }))
-    .catch(() => res.render('index'));
+  .then(data => data.campaigns)
+  .then(data => {
+    res.render('campaigns', {campaigns: data});
+  })
+  .catch(() => res.render('index'));
 });
 
 router.get('/adgenerator', (req, res, next) => {

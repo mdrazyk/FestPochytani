@@ -10,10 +10,19 @@
     <div class="jumbotron">
          <h1 class="display-3" style="text-align: center">Twarz 2!</h1>
       </div>
-      <ul class="list-group" style="width: 400px">
-          <% for (var key in campaigns) { %>
-            <li class="list-group-item"><%= campaigns[key].name %></li>
-          <% } %>
-      </ul>
+      <table class="table" style="width: 500px">
+          <thead>
+            <tr>
+              <th>Campaigns</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <% for (var key in campaigns) { %>
+                <td class="list-group-item"><%= campaigns[key].name %><a href=/addgenerator?<%= campaigns[key].name %>>Click</a></td>
+              <% } %>
+            </tr>
+          </tbody>
+        </table>
   </body>
 </html>
